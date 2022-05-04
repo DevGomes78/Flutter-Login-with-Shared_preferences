@@ -1,16 +1,15 @@
-# flutter_logar_listar
+<h1>Desafio Login </h1>
+ >Status: em Desenvolvimento ⚠️
 
-A new Flutter project.
+### O objetivo desse desafio é acessar uma Api de login, com email e Senha ,apos logar receber um token como resposta e em seguida acessar a Api do GitHub para listas os 100 primeiros repositorios, e ao clicar em qualquer usuario na lista,direcionar para a pagina do usuario no Github.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Mais sobre o App:
++ Componentização dos Widgets TextformField, container ,shimmer e Text para reaproveitar em outros arquivos.
++ Splash screen para abertura do App.
++ padrao MVC para organização do codigo.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Dependencias:
++ http:  para conexao com as Apis,
++ url_laucher:   redirecionar para pagina web,
++ shimmer:  para criar efeito de carregamento dos dados
