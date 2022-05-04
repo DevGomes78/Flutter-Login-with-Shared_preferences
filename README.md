@@ -5,7 +5,7 @@
 
 
 ## Mais sobre o App:
-+ Componentização dos Widgets TextformField, container ,shimmer e Text para reaproveitar em outros arquivos.
++ Componentização dos Widgets TextformField, Container e Text para reaproveitar em outros arquivos.
 + Splash screen para abertura do App.
 + padrao MVC para organização do codigo.
 
