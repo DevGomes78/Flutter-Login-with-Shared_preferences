@@ -14,3 +14,5 @@
 + http:  para conexao com as Apis,
 + url_laucher:   redirecionar para pagina web,
 + shimmer:  para criar efeito de carregamento dos dados
+
+![loginApi](https://user-images.githubusercontent.com/98062365/167458556-b1851af8-d8b7-47df-82d9-b41ad359e5f3.gif)
