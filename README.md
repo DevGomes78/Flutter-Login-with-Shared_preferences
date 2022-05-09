@@ -6,6 +6,7 @@
 
 ## Mais sobre o App:
 + Componentização dos Widgets TextformField, Container e Text para reaproveitar em outros arquivos.
++ barra de pesquisa dos usuarios.
 + Splash screen para abertura do App.
 + padrao MVC para organização do codigo.
 
