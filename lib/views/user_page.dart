@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_logar_listar/controlers/call_github.dart';
+import 'package:flutter_logar_listar/utils/call_github.dart';
 import 'package:flutter_logar_listar/controlers/login_controller.dart';
 import 'package:flutter_logar_listar/controlers/search.dart';
 import 'package:flutter_logar_listar/controlers/user_controller.dart';

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter_logar_listar/constants/service_constants.dart';
+import 'package:flutter_logar_listar/constants/service_constants_api.dart';
 import 'package:flutter_logar_listar/models/user_models.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,8 +23,9 @@ class UserController {
         return lista;
       }
     } catch (e) {
-      print('Erro ao acessar a Pagina');
-      return null;
+      print('Erro ao acessar a Pagina: $e');
+      return [];
     }
+    return [];
   }
 }

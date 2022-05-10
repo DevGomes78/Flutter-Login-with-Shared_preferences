@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/controlers/user_controller.dart';
 import 'package:flutter_logar_listar/models/user_models.dart';
 
-import 'call_github.dart';
+import '../utils/call_github.dart';
 
 class BuscaUsuario extends SearchDelegate {
   @override
@@ -66,7 +65,10 @@ class BuscaUsuario extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return const Center(
-      child: Text('Buscar Usuario'),
+      child: Text(
+        'Buscar Usuario',
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+      ),
     );
   }
 }
