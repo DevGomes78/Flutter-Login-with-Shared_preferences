@@ -3,8 +3,9 @@ import 'package:flutter_logar_listar/components/button_widget.dart';
 import 'package:flutter_logar_listar/components/container_widget.dart';
 import 'package:flutter_logar_listar/components/text_formWidget.dart';
 import 'package:flutter_logar_listar/components/text_widget.dart';
+import 'package:flutter_logar_listar/constants/service_constants_login.dart';
 import 'package:flutter_logar_listar/controlers/login_controller.dart';
-import 'package:flutter_logar_listar/utils/validaar_campos.dart';
+import 'package:flutter_logar_listar/utils/validar_campos.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -32,67 +33,15 @@ class _LoginState extends State<Login> {
             children: [
               ContainerWidget(text: 'Login'),
               const SizedBox(height: 200),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.grey[200],
-                  ),
-                  child: TextFormWidget(
-                    'Email',
-                    'digite email',
-                    const Icon(
-                      Icons.email,
-                      color: Colors.deepPurple,
-                    ),
-                    controller: emailController,
-                    obscureText: false,
-                    validator: Validate().validateEmail,
-                  ),
-                ),
-              ),
+              _mountAreaEmail(),
               const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.grey[200],
-                  ),
-                  child: TextFormWidget(
-                    'Senha',
-                    'digite a senha',
-                    const Icon(
-                      Icons.vpn_key,
-                      color: Colors.deepPurple,
-                    ),
-                    sulfixIcon: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _obscureText = !_obscureText;
-                        });
-                      },
-                      child: Icon(_obscureText
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                    ),
-                    controller: senhaController,
-                    obscureText: _obscureText,
-                    validator: Validate().validateSenha,
-                  ),
-                ),
-              ),
+              _mountAreaLogin(),
               Container(
                 margin: const EdgeInsets.only(top: 10, right: 20),
                 alignment: Alignment.centerRight,
                 child: InkWell(
                   child: const Text(
-                    'Esqueceu a Senha?',
+                    ServiceLogin.MountForgoLogin,
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.deepPurple),
                   ),
@@ -112,8 +61,8 @@ class _LoginState extends State<Login> {
               InkWell(
                 onTap: () {},
                 child: Textwidget(
-                  cadastro: 'Nao tem Cadastro ? ',
-                  login: 'Cadastrar',
+                  cadastro: ServiceLogin.MountAreaNotRegister,
+                  login: ServiceLogin.MountAreaRegister,
                 ),
               ),
             ],
@@ -123,7 +72,67 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void _doLogin(context) async {
+  _mountAreaLogin() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          color: Colors.grey[200],
+        ),
+        child: TextFormWidget(
+          ServiceLogin.MountAreaLogin,
+          ServiceLogin.MountAreaDigiteLogin,
+          const Icon(
+            Icons.vpn_key,
+            color: Colors.deepPurple,
+          ),
+          sulfixIcon: GestureDetector(
+            onTap: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+            child: Icon(
+              _obscureText ? Icons.visibility : Icons.visibility_off,
+            ),
+          ),
+          controller: senhaController,
+          obscureText: _obscureText,
+          validator: Validate().validateSenha,
+        ),
+      ),
+    );
+  }
+
+  _mountAreaEmail() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          color: Colors.grey[200],
+        ),
+        child: TextFormWidget(
+          ServiceLogin.MountAreaEmail,
+          ServiceLogin.MountAreaDigiteEmail,
+          const Icon(
+            Icons.email,
+            color: Colors.deepPurple,
+          ),
+          controller: emailController,
+          obscureText: false,
+          validator: Validate().validateEmail,
+        ),
+      ),
+    );
+  }
+
+  _doLogin(context) async {
     if (_formKey.currentState!.validate()) {
       LoginController().login(
         context,

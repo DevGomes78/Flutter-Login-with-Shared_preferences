@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_logar_listar/constants/service_constants.dart';
+import 'package:flutter_logar_listar/constants/service_constants_api.dart';
 import 'package:flutter_logar_listar/views/user_page.dart';
 import 'package:http/http.dart' as http;
 

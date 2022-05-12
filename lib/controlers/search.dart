@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_logar_listar/constants/service_constants_login.dart';
 import 'package:flutter_logar_listar/controlers/user_controller.dart';
 import 'package:flutter_logar_listar/models/user_models.dart';
 
-import 'call_github.dart';
+import '../utils/call_github_repository.dart';
 
 class BuscaUsuario extends SearchDelegate {
   @override
@@ -55,7 +55,7 @@ class BuscaUsuario extends SearchDelegate {
                       subtitle: Text(
                         snapshot.data![index].htmlUrl.toString(),
                       ),
-                      onTap: GitHub(userModel: lista[index]).callGithub,
+                      onTap: GitHubReposiatory(userModel: lista[index]).callGithub,
                     ),
                   );
                 });
@@ -66,7 +66,10 @@ class BuscaUsuario extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return const Center(
-      child: Text('Buscar Usuario'),
+      child: Text(
+        ServiceLogin.MountAreaBuscaUsuario,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+      ),
     );
   }
 }
