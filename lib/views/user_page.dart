@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_logar_listar/utils/call_github.dart';
+import 'package:flutter_logar_listar/utils/call_github_repository.dart';
 import 'package:flutter_logar_listar/controlers/login_controller.dart';
 import 'package:flutter_logar_listar/controlers/search.dart';
 import 'package:flutter_logar_listar/controlers/user_controller.dart';
@@ -20,8 +20,8 @@ class _UserPageState extends State<UserPage> {
   @override
   void initState() {
     super.initState();
-      setState(() {
-        loadUser();
+    setState(() {
+      loadUser();
     });
   }
 
@@ -37,8 +37,6 @@ class _UserPageState extends State<UserPage> {
     });
     setState(() => isLoading = false);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -77,17 +75,17 @@ class _UserPageState extends State<UserPage> {
 
   Card buildCard(int index) {
     return Card(
-                elevation: 5,
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      lista[index].owner!.avatarUrl.toString(),
-                    ),
-                  ),
-                  title: Text(lista[index].name.toString()),
-                  subtitle: Text(lista[index].htmlUrl.toString()),
-                  onTap: GitHub(userModel: lista[index]).callGithub,
-                ),
-              );
+      elevation: 5,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage(
+            lista[index].owner!.avatarUrl.toString(),
+          ),
+        ),
+        title: Text(lista[index].name.toString()),
+        subtitle: Text(lista[index].htmlUrl.toString()),
+        onTap: GitHubReposiatory(userModel: lista[index]).callGithub,
+      ),
+    );
   }
 }

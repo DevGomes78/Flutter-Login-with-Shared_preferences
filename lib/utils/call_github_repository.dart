@@ -4,9 +4,9 @@ import 'package:flutter_logar_listar/models/user_models.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 
-class GitHub extends StatelessWidget {
+class GitHubReposiatory extends StatelessWidget {
   UserModel userModel;
-  GitHub({Key? key, required this.userModel}) : super(key: key);
+  GitHubReposiatory({Key? key, required this.userModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,4 @@ class ServiceUrl{
   static const ApiErrorLogin = 'usuario ou senha invalidos';
   static const ApiError = 'Erro ao acessar a Pagina';
 
-  static const MountAreaEmail = 'Email:';
-  static const MountAreaDigiteEmail = 'Digite o email:';
-
 }

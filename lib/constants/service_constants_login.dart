@@ -10,5 +10,7 @@ class ServiceLogin{
   static const MountAreaNotRegister = 'Nao tem Cadastro ? ';
   static const MountAreaRegister = 'Cadastrar';
 
+  static const MountAreaBuscaUsuario = 'Buscar usuario';
+
 
 }
