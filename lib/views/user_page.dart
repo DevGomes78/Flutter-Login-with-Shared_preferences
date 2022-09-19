@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/utils/call_github_repository.dart';
 import 'package:flutter_logar_listar/controlers/login_controller.dart';
-import 'package:flutter_logar_listar/controlers/search.dart';
+import 'package:flutter_logar_listar/controlers/search_controller.dart';
 import 'package:flutter_logar_listar/controlers/user_controller.dart';
 import 'package:flutter_logar_listar/models/user_models.dart';
 import 'package:flutter_logar_listar/views/shimmer_page.dart';
