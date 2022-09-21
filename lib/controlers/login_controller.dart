@@ -15,7 +15,7 @@ class LoginController {
         });
         if (response.statusCode == 200) {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => UserPage()));
+              context, MaterialPageRoute(builder: (context) => const UserPage()));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
