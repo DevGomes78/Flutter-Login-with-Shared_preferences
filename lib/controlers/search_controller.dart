@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_logar_listar/constants/service_constants_login.dart';
+import 'package:flutter_logar_listar/constants/string_constants_login.dart';
 import 'package:flutter_logar_listar/controlers/user_controller.dart';
 import 'package:flutter_logar_listar/models/user_models.dart';
 
@@ -67,7 +67,7 @@ class BuscaUsuario extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     return const Center(
       child: Text(
-        ServiceLogin.MountAreaBuscaUsuario,
+        ServiceLogin.buscarUsuario,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
       ),
     );

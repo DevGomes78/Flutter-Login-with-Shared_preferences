@@ -3,7 +3,7 @@ import 'package:flutter_logar_listar/components/button_widget.dart';
 import 'package:flutter_logar_listar/components/container_widget.dart';
 import 'package:flutter_logar_listar/components/text_formWidget.dart';
 import 'package:flutter_logar_listar/components/text_widget.dart';
-import 'package:flutter_logar_listar/constants/service_constants_login.dart';
+import 'package:flutter_logar_listar/constants/string_constants_login.dart';
 import 'package:flutter_logar_listar/controlers/login_controller.dart';
 import 'package:flutter_logar_listar/utils/validar_campos.dart';
 
@@ -13,11 +13,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController emailController =
-      TextEditingController(text: 'eve.holt@reqres.in');
+  TextEditingController emailController = TextEditingController();
 
-  TextEditingController senhaController =
-      TextEditingController(text: 'cityslicka');
+  TextEditingController senhaController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -41,7 +39,7 @@ class _LoginState extends State<Login> {
                 alignment: Alignment.centerRight,
                 child: InkWell(
                   child: const Text(
-                    ServiceLogin.MountForgoLogin,
+                    ServiceLogin.esqueceuSenha,
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.deepPurple),
                   ),
@@ -61,8 +59,8 @@ class _LoginState extends State<Login> {
               InkWell(
                 onTap: () {},
                 child: Textwidget(
-                  cadastro: ServiceLogin.MountAreaNotRegister,
-                  login: ServiceLogin.MountAreaRegister,
+                  cadastro: ServiceLogin.cadastrar,
+                  login: ServiceLogin.naoTemCadastro,
                 ),
               ),
             ],
@@ -83,8 +81,8 @@ class _LoginState extends State<Login> {
           color: Colors.grey[200],
         ),
         child: TextFormWidget(
-          ServiceLogin.MountAreaLogin,
-          ServiceLogin.MountAreaDigiteLogin,
+          ServiceLogin.login,
+          ServiceLogin.digiteLogin,
           const Icon(
             Icons.vpn_key,
             color: Colors.deepPurple,
@@ -118,8 +116,8 @@ class _LoginState extends State<Login> {
           color: Colors.grey[200],
         ),
         child: TextFormWidget(
-          ServiceLogin.MountAreaEmail,
-          ServiceLogin.MountAreaDigiteEmail,
+          ServiceLogin.email,
+          ServiceLogin.digiteEmail,
           const Icon(
             Icons.email,
             color: Colors.deepPurple,
