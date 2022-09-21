@@ -67,7 +67,7 @@ class BuscaUsuario extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     return const Center(
       child: Text(
-        ServiceLogin.buscarUsuario,
+        StringConstants.buscarUsuario,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
       ),
     );

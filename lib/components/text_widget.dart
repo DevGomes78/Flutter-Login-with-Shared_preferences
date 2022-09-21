@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class Textwidget extends StatelessWidget {
   String? cadastro;
   String? login;
@@ -18,14 +17,14 @@ class Textwidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(cadastro!),
+          Text(login!),
           Text(
-            login!,
+            cadastro!,
             style: const TextStyle(
               color: Colors.deepPurple,
               fontWeight: FontWeight.bold,
             ),
-          )
+          ),
         ],
       ),
     );
