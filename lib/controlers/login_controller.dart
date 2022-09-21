@@ -3,6 +3,8 @@ import 'package:flutter_logar_listar/constants/service_constants_api.dart';
 import 'package:flutter_logar_listar/views/user_page.dart';
 import 'package:http/http.dart' as http;
 
+import '../constants/error_constants.dart';
+
 class LoginController {
   Future<void> login(context, String email, String password) async {
     try {
@@ -23,7 +25,7 @@ class LoginController {
         }
       }
     } catch (e) {
-      print(ServiceUrl.ApiError);
+      print(ErrorConstants.ApiError);
       return;
     }
   }

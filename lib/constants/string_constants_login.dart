@@ -1,5 +1,4 @@
-class ServiceLogin{
-
+class ServiceLogin {
   static const email = 'Email:';
   static const digiteEmail = 'Digite o email:';
 
@@ -11,6 +10,4 @@ class ServiceLogin{
   static const cadastrar = 'Cadastrar';
 
   static const buscarUsuario = 'Buscar usuario';
-
-
 }
