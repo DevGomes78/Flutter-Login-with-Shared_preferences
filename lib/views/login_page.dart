@@ -1,20 +1,15 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/components/button_widget.dart';
 import 'package:flutter_logar_listar/components/container_widget.dart';
 import 'package:flutter_logar_listar/components/text_formWidget.dart';
 import 'package:flutter_logar_listar/components/text_widget.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
-import 'package:flutter_logar_listar/controlers/login_controller.dart';
 import 'package:flutter_logar_listar/models/user_models.dart';
 import 'package:flutter_logar_listar/utils/validar_campos.dart';
 import 'package:flutter_logar_listar/views/register_page.dart';
 import 'package:flutter_logar_listar/views/user_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../constants/error_constants.dart';
-import '../constants/service_constants_api.dart';
+import '../controlers/login_user_controller.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -38,43 +33,16 @@ class _LoginPageState extends State<LoginPage> {
           key: _formKey,
           child: Column(
             children: [
-              ContainerWidget(text: 'Login'),
+              ContainerWidget(text: StringConstants.login),
               const SizedBox(height: 200),
-              _mountAreaEmail(),
+              _AreaEmail(),
               const SizedBox(height: 10),
-              _mountAreaLogin(),
-              Container(
-                margin: const EdgeInsets.only(top: 10, right: 20),
-                alignment: Alignment.centerRight,
-                child: InkWell(
-                  child: const Text(
-                    StringConstants.esqueceuSenha,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.deepPurple),
-                  ),
-                  onTap: () {},
-                ),
-              ),
+              _AreaLogin(),
+              _textEsqueceuSenha(),
               const SizedBox(height: 50),
-              InkWell(
-                onTap: () {
-                  _doLogin();
-                },
-                child: ButtonWidget(
-                  text: 'Login',
-                ),
-              ),
+              _btnLogin(),
               const SizedBox(height: 10),
-              InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => RegisterPage()));
-                },
-                child: Textwidget(
-                  cadastro: StringConstants.cadastrar,
-                  login: StringConstants.naoTemCadastro,
-                ),
-              ),
+              _textCadastrar(context),
             ],
           ),
         ),
@@ -82,7 +50,48 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _mountAreaLogin() {
+  InkWell _textCadastrar(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => RegisterPage()));
+      },
+      child: Textwidget(
+        cadastro: StringConstants.cadastrar,
+        login: StringConstants.naoTemCadastro,
+      ),
+    );
+  }
+
+  InkWell _btnLogin() {
+    return InkWell(
+      onTap: () {
+        _doLogin();
+      },
+      child: ButtonWidget(
+        text: 'Login',
+      ),
+    );
+  }
+
+  Container _textEsqueceuSenha() {
+    return Container(
+      margin: const EdgeInsets.only(top: 10, right: 20),
+      alignment: Alignment.centerRight,
+      child: InkWell(
+        child: const Text(
+          StringConstants.esqueceuSenha,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.deepPurple,
+          ),
+        ),
+        onTap: () {},
+      ),
+    );
+  }
+
+  _AreaLogin() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -117,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _mountAreaEmail() {
+  _AreaEmail() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -146,27 +155,18 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       String mailForm = emailController.text;
       String senhaForm = senhaController.text;
-      UserModel savedUser = await _getsavedUser();
+      UserModel savedUser = await LoginUser().getsavedUser();
 
-      if(mailForm == savedUser.mail&& senhaForm == savedUser.senha){
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context)=>UserPage()));
-      }else{
+      if (mailForm == savedUser.mail && senhaForm == savedUser.senha) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => UserPage()));
+      } else {
         ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+          const SnackBar(
             content: Text(ErrorConstants.ApiErrorLogin),
           ),
         );
       }
     }
-  }
-
-  Future<UserModel> _getsavedUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? jsonUser = prefs.getString(StringConstants.loguinUserInfos);
-    Map<String,dynamic> mapUser = json.decode(jsonUser.toString());
-    UserModel userModel = UserModel.fromJson(mapUser);
-    return userModel;
-
   }
 }

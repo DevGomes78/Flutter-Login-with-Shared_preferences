@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/components/button_widget.dart';
@@ -6,11 +5,11 @@ import 'package:flutter_logar_listar/components/container_widget.dart';
 import 'package:flutter_logar_listar/components/text_formWidget.dart';
 import 'package:flutter_logar_listar/components/text_widget.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
+import 'package:flutter_logar_listar/controlers/save_user_controller.dart';
 import 'package:flutter_logar_listar/utils/validar_campos.dart';
 import 'package:flutter_logar_listar/views/login_page.dart';
 import '../constants/error_constants.dart';
 import '../models/user_models.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -47,19 +46,23 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 50),
               btnCadastrar(),
               const SizedBox(height: 10),
-              InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
-                },
-                child: Textwidget(
-                  login: StringConstants.fazerLogin,
-                  cadastro: StringConstants.jaecadastrado,
-                ),
-              ),
+              textFazerLogin(context),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  InkWell textFazerLogin(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginPage()));
+      },
+      child: Textwidget(
+        cadastro: StringConstants.fazerLogin,
+        login: StringConstants.jaecadastrado,
       ),
     );
   }
@@ -208,20 +211,14 @@ class _RegisterPageState extends State<RegisterPage> {
           content: Text(StringConstants.loginRegistrado),
         ),
       );
-      _saveUser(newUser);
-    }else{
+      SaveUser().saveUser(newUser);
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
-         const SnackBar(
-          content: Text(ErrorConstants.errorRegister,),
+        const SnackBar(
+          content: Text(ErrorConstants.errorRegister),
         ),
       );
     }
   }
-
-  void _saveUser(UserModel userModel) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString(StringConstants.loguinUserInfos,
-          json.encode(userModel.toJson()),
-        );
-    }
 }
+
