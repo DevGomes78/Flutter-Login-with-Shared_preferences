@@ -18,4 +18,7 @@ class StringConstants {
   static const fazerLogin = 'FazerLogin';
   static const loguinUserInfos = 'LOGIN_USER_INFOS';
   static const loginRegistrado = 'Login registrado com sucesso!';
+  static const desejaSair = 'Deseja sair?';
+  static const cancelar = ' Cancelar';
+  static const sair = 'Sair';
 }

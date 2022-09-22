@@ -32,15 +32,15 @@ class _RegisterPageState extends State<RegisterPage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('Deseja sair?'),
+            title: const Text(StringConstants.desejaSair),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context, false),
-                child: const Text('Cancelar'),
+                child: const Text(StringConstants.cancelar),
               ),
               OutlinedButton(
                 onPressed: () => Navigator.pop(context, true),
-                child: const Text('Sair'),
+                child: const Text(StringConstants.sair),
               ),
             ],
           );
