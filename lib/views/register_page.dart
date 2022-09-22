@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/components/button_widget.dart';
 import 'package:flutter_logar_listar/components/container_widget.dart';
@@ -26,35 +25,65 @@ class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
 
   bool _obscureText = true;
+  bool saved = false;
+
+  Future<bool?> showConfirmationDialog() {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Deseja sair?'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: const Text('Cancelar'),
+              ),
+              OutlinedButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: const Text('Sair'),
+              ),
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              cardCadastrar(context),
-              const SizedBox(height: 150),
-              _campoNome(),
-              const SizedBox(height: 10),
-              _campoEmail(),
-              const SizedBox(height: 10),
-              _campoLogin(),
-              textEsqueceuSenha(),
-              const SizedBox(height: 50),
-              btnCadastrar(),
-              const SizedBox(height: 10),
-              textFazerLogin(context),
-            ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (!saved) {
+          final confirmation = await showConfirmationDialog();
+          return confirmation ?? false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                ContainerWidget(text: StringConstants.cadastrar),
+                const SizedBox(height: 150),
+                _campoNome(),
+                const SizedBox(height: 10),
+                _campoEmail(),
+                const SizedBox(height: 10),
+                _campoLogin(),
+                _textEsqueceuSenha(),
+                const SizedBox(height: 50),
+                _btnCadastrarLogin(),
+                const SizedBox(height: 10),
+                _textFazerLogin(context),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  InkWell textFazerLogin(BuildContext context) {
+  _textFazerLogin(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -67,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  InkWell btnCadastrar() {
+  _btnCadastrarLogin() {
     return InkWell(
       onTap: () {
         _register();
@@ -78,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Container textEsqueceuSenha() {
+  _textEsqueceuSenha() {
     return Container(
       margin: const EdgeInsets.only(top: 10, right: 20),
       alignment: Alignment.centerRight,
@@ -86,31 +115,10 @@ class _RegisterPageState extends State<RegisterPage> {
         child: const Text(
           StringConstants.esqueceuSenha,
           style:
-          TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),
         ),
         onTap: () {},
       ),
-    );
-  }
-
-  Stack cardCadastrar(BuildContext context) {
-    return Stack(
-      children: [
-        ContainerWidget(text: StringConstants.cadastrar),
-        Positioned(
-          left: 8,
-          bottom: 70,
-          child: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        )
-      ],
     );
   }
 
@@ -212,6 +220,9 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       );
       SaveUser().saveUser(newUser);
+      _nomeController.clear();
+      _emailController.clear();
+      _senhaController.clear();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -221,4 +232,3 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 }
-

@@ -24,33 +24,41 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   bool _obscureText = true;
-
+  bool saved = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              ContainerWidget(text: StringConstants.login),
-              const SizedBox(height: 200),
-              _AreaEmail(),
-              const SizedBox(height: 10),
-              _AreaLogin(),
-              _textEsqueceuSenha(),
-              const SizedBox(height: 50),
-              _btnLogin(),
-              const SizedBox(height: 10),
-              _textCadastrarLogin(context),
-            ],
+    return WillPopScope(
+      onWillPop: ()async{
+      if(!saved){
+        return false;
+      }
+      return true;
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                ContainerWidget(text: StringConstants.login),
+                const SizedBox(height: 200),
+                _AreaEmail(),
+                const SizedBox(height: 10),
+                _AreaLogin(),
+                _textEsqueceuSenha(),
+                const SizedBox(height: 50),
+                _btnLogin(),
+                const SizedBox(height: 10),
+                _textCadastrarLogin(context),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  InkWell _textCadastrarLogin(BuildContext context) {
+  _textCadastrarLogin(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -63,13 +71,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  InkWell _btnLogin() {
+  _btnLogin() {
     return InkWell(
       onTap: () {
         _doLogin();
       },
       child: ButtonWidget(
-        text: 'Login',
+        text: StringConstants.login,
       ),
     );
   }
