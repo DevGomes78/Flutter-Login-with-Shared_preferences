@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/utils/call_github_repository.dart';
-import 'package:flutter_logar_listar/controlers/login_controller.dart';
 import 'package:flutter_logar_listar/controlers/search_controller.dart';
 import 'package:flutter_logar_listar/controlers/user_controller.dart';
-import 'package:flutter_logar_listar/models/user_models.dart';
+import 'package:flutter_logar_listar/models/user_api_models.dart';
 import 'package:flutter_logar_listar/views/shimmer_page.dart';
 
 class UserPage extends StatefulWidget {
@@ -15,7 +14,7 @@ class UserPage extends StatefulWidget {
 
 class _UserPageState extends State<UserPage> {
   bool isLoading = false;
-  List<UserModel> lista = [];
+  List<UserApiModel> lista = [];
 
   @override
   void initState() {
@@ -84,7 +83,7 @@ class _UserPageState extends State<UserPage> {
         ),
         title: Text(lista[index].name.toString()),
         subtitle: Text(lista[index].htmlUrl.toString()),
-        onTap: GitHubReposiatory(userModel: lista[index]).callGithub,
+        onTap: GitHubReposiatory(userApiModel: lista[index]).callGithub,
       ),
     );
   }

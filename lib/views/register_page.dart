@@ -1,12 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/components/button_widget.dart';
 import 'package:flutter_logar_listar/components/container_widget.dart';
 import 'package:flutter_logar_listar/components/text_formWidget.dart';
 import 'package:flutter_logar_listar/components/text_widget.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
-import 'package:flutter_logar_listar/controlers/login_controller.dart';
 import 'package:flutter_logar_listar/utils/validar_campos.dart';
 import 'package:flutter_logar_listar/views/login_page.dart';
+import '../constants/error_constants.dart';
+import '../models/user_models.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -41,14 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
               _campoLogin(),
               textEsqueceuSenha(),
               const SizedBox(height: 50),
-              InkWell(
-                onTap: () {
-                  _doLogin(context);
-                },
-                child: ButtonWidget(
-                  text: StringConstants.cadastrar,
-                ),
-              ),
+              btnCadastrar(),
               const SizedBox(height: 10),
               InkWell(
                 onTap: () {
@@ -67,6 +64,17 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  InkWell btnCadastrar() {
+    return InkWell(
+      onTap: () {
+        _register();
+      },
+      child: ButtonWidget(
+        text: StringConstants.cadastrar,
+      ),
+    );
+  }
+
   Container textEsqueceuSenha() {
     return Container(
       margin: const EdgeInsets.only(top: 10, right: 20),
@@ -75,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: const Text(
           StringConstants.esqueceuSenha,
           style:
-              TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),
+          TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),
         ),
         onTap: () {},
       ),
@@ -121,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
             color: Colors.deepPurple,
           ),
           controller: _nomeController,
-          obscureText: _obscureText,
+          obscureText: false,
           validator: Validate().validateNome,
         ),
       ),
@@ -188,13 +196,32 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  _doLogin(context) async {
+  void _register() {
     if (_formKey.currentState!.validate()) {
-      LoginController().login(
-        context,
-        _emailController.text,
-        _senhaController.text,
+      UserModel newUser = UserModel(
+        name: _nomeController.text,
+        mail: _emailController.text,
+        senha: _senhaController.text,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(StringConstants.loginRegistrado),
+        ),
+      );
+      _saveUser(newUser);
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+         const SnackBar(
+          content: Text(ErrorConstants.errorRegister),
+        ),
       );
     }
   }
+
+  void _saveUser(UserModel userModel) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString(StringConstants.loguinUserInfos,
+          json.encode(userModel.toJson()),
+        );
+    }
 }

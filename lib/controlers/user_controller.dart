@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:flutter_logar_listar/constants/service_constants_api.dart';
-import 'package:flutter_logar_listar/models/user_models.dart';
+import 'package:flutter_logar_listar/models/user_api_models.dart';
 import 'package:http/http.dart' as http;
 
-List<UserModel> lista = [];
+List<UserApiModel> lista = [];
 
 class UserController {
-  Future<List<UserModel>?> GetUser({String? query}) async {
+  Future<List<UserApiModel>?> GetUser({String? query}) async {
     try {
-      var url = Uri.parse(ServiceUrl.BaseUrl);
+      var url = Uri.parse(ServiceApiUrl.BaseUrl);
       var response = await http.get(url);
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
-        result.forEach((item) => lista.add(UserModel.fromJson(item)));
+        result.forEach((item) => lista.add(UserApiModel.fromJson(item)));
         if (query!.length > 1) {
           lista = lista
               .where((item) => item.name!.toLowerCase().contains(

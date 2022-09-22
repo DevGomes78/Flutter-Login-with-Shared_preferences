@@ -16,4 +16,6 @@ class StringConstants {
   static const buscarUsuario = 'Buscar usuario';
   static const jaecadastrado = 'Ja é Cadastrado?';
   static const fazerLogin = 'FazerLogin';
+  static const loguinUserInfos = 'LOGIN_USER_INFOS';
+  static const loginRegistrado = 'Login registrado com sucesso!';
 }

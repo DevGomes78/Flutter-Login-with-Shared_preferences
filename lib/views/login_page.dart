@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/components/button_widget.dart';
 import 'package:flutter_logar_listar/components/container_widget.dart';
@@ -5,8 +7,14 @@ import 'package:flutter_logar_listar/components/text_formWidget.dart';
 import 'package:flutter_logar_listar/components/text_widget.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
 import 'package:flutter_logar_listar/controlers/login_controller.dart';
+import 'package:flutter_logar_listar/models/user_models.dart';
 import 'package:flutter_logar_listar/utils/validar_campos.dart';
 import 'package:flutter_logar_listar/views/register_page.dart';
+import 'package:flutter_logar_listar/views/user_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../constants/error_constants.dart';
+import '../constants/service_constants_api.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -50,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 50),
               InkWell(
                 onTap: () {
-                  _doLogin(context);
+                  _doLogin();
                 },
                 child: ButtonWidget(
                   text: 'Login',
@@ -60,13 +68,11 @@ class _LoginPageState extends State<LoginPage> {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>RegisterPage()));
+                      MaterialPageRoute(builder: (context) => RegisterPage()));
                 },
                 child: Textwidget(
-
                   cadastro: StringConstants.cadastrar,
                   login: StringConstants.naoTemCadastro,
-
                 ),
               ),
             ],
@@ -136,13 +142,31 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _doLogin(context) async {
+  _doLogin() async {
     if (_formKey.currentState!.validate()) {
-      LoginController().login(
-        context,
-        emailController.text,
-        senhaController.text,
-      );
+      String mailForm = emailController.text;
+      String senhaForm = senhaController.text;
+      UserModel savedUser = await _getsavedUser();
+
+      if(mailForm == savedUser.mail&& senhaForm == savedUser.senha){
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>UserPage()));
+      }else{
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+            content: Text(ErrorConstants.ApiErrorLogin),
+          ),
+        );
+      }
     }
+  }
+
+  Future<UserModel> _getsavedUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? jsonUser = prefs.getString(StringConstants.loguinUserInfos);
+    Map<String,dynamic> mapUser = json.decode(jsonUser.toString());
+    UserModel userModel = UserModel.fromJson(mapUser);
+    return userModel;
+
   }
 }

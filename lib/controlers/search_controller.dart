@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
 import 'package:flutter_logar_listar/controlers/user_controller.dart';
-import 'package:flutter_logar_listar/models/user_models.dart';
+import 'package:flutter_logar_listar/models/user_api_models.dart';
 
 import '../utils/call_github_repository.dart';
 
@@ -30,7 +30,7 @@ class BuscaUsuario extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return FutureBuilder<List<UserModel>?>(
+    return FutureBuilder<List<UserApiModel>?>(
         future: UserController().GetUser(query: query),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -55,7 +55,7 @@ class BuscaUsuario extends SearchDelegate {
                       subtitle: Text(
                         snapshot.data![index].htmlUrl.toString(),
                       ),
-                      onTap: GitHubReposiatory(userModel: lista[index]).callGithub,
+                      onTap: GitHubReposiatory(userApiModel: lista[index]).callGithub,
                     ),
                   );
                 });

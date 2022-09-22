@@ -1,12 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_logar_listar/models/user_models.dart';
+import 'package:flutter_logar_listar/models/user_api_models.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 
 class GitHubReposiatory extends StatelessWidget {
-  UserModel userModel;
-  GitHubReposiatory({Key? key, required this.userModel}) : super(key: key);
+  UserApiModel userApiModel;
+  GitHubReposiatory({Key? key, required this.userApiModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class GitHubReposiatory extends StatelessWidget {
   }
 
   void callGithub() async {
-    if (await launch(userModel.htmlUrl.toString())) {
+    if (await launch(userApiModel.htmlUrl.toString())) {
       await launch(
-        userModel.htmlUrl.toString(),
+        userApiModel.htmlUrl.toString(),
         enableJavaScript: true,
         forceWebView: true,
       );
     } else {
-      throw 'Could not launch $userModel.htmlUrl.toString()';
+      throw 'Could not launch $userApiModel.htmlUrl.toString()';
     }
   }
 }
