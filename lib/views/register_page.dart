@@ -212,7 +212,7 @@ class _RegisterPageState extends State<RegisterPage> {
     }else{
       ScaffoldMessenger.of(context).showSnackBar(
          const SnackBar(
-          content: Text(ErrorConstants.errorRegister),
+          content: Text(ErrorConstants.errorRegister,),
         ),
       );
     }
