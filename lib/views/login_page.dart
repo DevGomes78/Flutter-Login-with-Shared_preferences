@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 50),
               _btnLogin(),
               const SizedBox(height: 10),
-              _textCadastrar(context),
+              _textCadastrarLogin(context),
             ],
           ),
         ),
@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  InkWell _textCadastrar(BuildContext context) {
+  InkWell _textCadastrarLogin(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.push(
