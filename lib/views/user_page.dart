@@ -42,25 +42,35 @@ class _UserPageState extends State<UserPage> {
     setState(() => isLoading = false);
   }
 
+  bool saved = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context),
-      drawer: DrawerWidget(
-        name: widget.name.toString(),
-        email: widget.email.toString(),
-      ),
-      body: RefreshIndicator(
-        onRefresh: UserController().GetUser,
-        child: ListView.builder(
-            itemCount: isLoading ? 10 : lista.length,
-            itemBuilder: (context, index) {
-              if (isLoading) {
-                return const Skeleton().buildListTile();
-              } else {
-                return _listUser(index);
-              }
-            }),
+    return WillPopScope(
+      onWillPop: () async {
+        if (!saved) {
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        appBar: buildAppBar(context),
+        drawer: DrawerWidget(
+          name: widget.name.toString(),
+          email: widget.email.toString(),
+        ),
+        body: RefreshIndicator(
+          onRefresh: UserController().GetUser,
+          child: ListView.builder(
+              itemCount: isLoading ? 10 : lista.length,
+              itemBuilder: (context, index) {
+                if (isLoading) {
+                  return const Skeleton().buildListTile();
+                } else {
+                  return _listUser(index);
+                }
+              }),
+        ),
       ),
     );
   }
@@ -68,7 +78,7 @@ class _UserPageState extends State<UserPage> {
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.deepPurple,
-      title: Text(widget.name.toString()),
+      title: const Text('User List'),
       centerTitle: true,
       actions: [
         IconButton(

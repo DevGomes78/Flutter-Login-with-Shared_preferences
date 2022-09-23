@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_logar_listar/views/login_page.dart';
 
 import '../constants/string_constants_login.dart';
 
@@ -22,11 +23,12 @@ class DrawerWidget extends StatelessWidget {
           UserAccountsDrawerHeader(
             accountEmail: Text(email),
             accountName: Text(name),
-            currentAccountPicture:  CircleAvatar(
+            currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.white,
               child: Text(
                 name[0].toUpperCase(),
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -43,9 +45,16 @@ class DrawerWidget extends StatelessWidget {
             title: Text(StringConstants.configuracoes),
           ),
           const Divider(color: Colors.grey),
-          const ListTile(
-            leading: Icon(Icons.input_rounded),
-            title: Text(StringConstants.sair),
+          ListTile(
+            leading: const Icon(Icons.input_rounded),
+            title: const Text(StringConstants.sair),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ));
+            },
           ),
           const Divider(color: Colors.grey),
         ],
