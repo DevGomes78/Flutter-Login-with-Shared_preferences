@@ -6,7 +6,9 @@ import 'package:flutter_logar_listar/models/user_api_models.dart';
 import 'package:flutter_logar_listar/views/shimmer_page.dart';
 
 class UserPage extends StatefulWidget {
-  const UserPage({Key? key}) : super(key: key);
+  String? name;
+
+  UserPage(String? name);
 
   @override
   State<UserPage> createState() => _UserPageState();
@@ -42,7 +44,7 @@ class _UserPageState extends State<UserPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
-        title: const Text('Lista de Usuarios'),
+        title: Text(''),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
@@ -65,14 +67,14 @@ class _UserPageState extends State<UserPage> {
               if (isLoading) {
                 return const Skeleton().buildListTile();
               } else {
-                return buildCard(index);
+                return _listUser(index);
               }
             }),
       ),
     );
   }
 
-  Card buildCard(int index) {
+  _listUser(int index) {
     return Card(
       elevation: 5,
       child: ListTile(

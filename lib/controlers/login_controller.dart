@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/constants/service_constants_api.dart';
-import 'package:flutter_logar_listar/views/user_page.dart';
 import 'package:http/http.dart' as http;
 
 import '../constants/error_constants.dart';
@@ -14,8 +13,8 @@ class LoginController {
           'password': password,
         });
         if (response.statusCode == 200) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const UserPage()));
+         // Navigator.push(
+            //  context, MaterialPageRoute(builder: (context) =>  UserPage()));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

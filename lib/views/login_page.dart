@@ -167,7 +167,8 @@ class _LoginPageState extends State<LoginPage> {
 
       if (mailForm == savedUser.mail && senhaForm == savedUser.senha) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => UserPage()));
+            context, MaterialPageRoute(builder: (context) => UserPage(savedUser.name)));
+        print(savedUser.name);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
