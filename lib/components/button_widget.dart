@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ButtonWidget extends StatelessWidget {
   String? text;
 
-  ButtonWidget({required this.text});
+  ButtonWidget({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

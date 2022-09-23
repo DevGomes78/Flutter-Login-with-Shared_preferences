@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_logar_listar/constants/error_constants.dart';
 import 'package:flutter_logar_listar/constants/service_constants_api.dart';
 import 'package:flutter_logar_listar/models/user_api_models.dart';
 import 'package:http/http.dart' as http;
@@ -8,7 +9,7 @@ List<UserApiModel> lista = [];
 class UserController {
   Future<List<UserApiModel>?> GetUser({String? query}) async {
     try {
-      var url = Uri.parse(ServiceApiUrl.BaseUrl);
+      var url = Uri.parse(ServiceApiUrl.baseUrl);
       var response = await http.get(url);
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
@@ -23,7 +24,7 @@ class UserController {
         return lista;
       }
     } catch (e) {
-      print('Erro ao acessar a Pagina: $e');
+      print('${ErrorConstants.ApiErrorLogin}  $e');
       return [];
     }
     return [];

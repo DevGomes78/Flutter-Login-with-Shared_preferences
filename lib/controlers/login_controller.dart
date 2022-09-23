@@ -8,7 +8,7 @@ class LoginController {
   Future<void> login(context, String email, String password) async {
     try {
       if (email.isNotEmpty && password.isNotEmpty) {
-        final response = await http.post(Uri.parse(ServiceApiUrl.LoginUrl), body: {
+        final response = await http.post(Uri.parse(ServiceApiUrl.loginUrl), body: {
           'email': email,
           'password': password,
         });
@@ -18,7 +18,7 @@ class LoginController {
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text(ServiceApiUrl.LoginUrl),
+              content: Text(ServiceApiUrl.loginUrl),
             ),
           );
         }
