@@ -5,10 +5,13 @@ import 'package:flutter_logar_listar/controlers/user_controller.dart';
 import 'package:flutter_logar_listar/models/user_api_models.dart';
 import 'package:flutter_logar_listar/views/shimmer_page.dart';
 
+import '../components/drawer_widget.dart';
+
 class UserPage extends StatefulWidget {
   String? name;
+  String? email;
 
-  UserPage(String? name);
+  UserPage({this.name, this.email});
 
   @override
   State<UserPage> createState() => _UserPageState();
@@ -42,22 +45,10 @@ class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
-        title: Text(''),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              showSearch(context: context, delegate: BuscaUsuario());
-            },
-            icon: const Icon(Icons.search),
-          ),
-        ],
+      appBar: buildAppBar(context),
+      drawer: DrawerWidget(
+        name: widget.name.toString(),
+        email: widget.email.toString(),
       ),
       body: RefreshIndicator(
         onRefresh: UserController().GetUser,
@@ -71,6 +62,22 @@ class _UserPageState extends State<UserPage> {
               }
             }),
       ),
+    );
+  }
+
+  AppBar buildAppBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.deepPurple,
+      title: Text(widget.name.toString()),
+      centerTitle: true,
+      actions: [
+        IconButton(
+          onPressed: () {
+            showSearch(context: context, delegate: BuscaUsuario());
+          },
+          icon: const Icon(Icons.search),
+        ),
+      ],
     );
   }
 

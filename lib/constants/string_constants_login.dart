@@ -21,4 +21,6 @@ class StringConstants {
   static const desejaSair = 'Deseja sair?';
   static const cancelar = ' Cancelar';
   static const sair = 'Sair';
+  static const minhaConta = 'Minha Conta';
+  static const  configuracoes = 'Configuraçoes';
 }

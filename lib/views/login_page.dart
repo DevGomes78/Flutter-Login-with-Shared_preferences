@@ -25,14 +25,15 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _obscureText = true;
   bool saved = false;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()async{
-      if(!saved){
-        return false;
-      }
-      return true;
+      onWillPop: () async {
+        if (!saved) {
+          return false;
+        }
+        return true;
       },
       child: Scaffold(
         body: SingleChildScrollView(
@@ -167,7 +168,12 @@ class _LoginPageState extends State<LoginPage> {
 
       if (mailForm == savedUser.mail && senhaForm == savedUser.senha) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => UserPage(savedUser.name)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => UserPage(
+                      name: savedUser.name,
+                      email: savedUser.mail,
+                    )));
         print(savedUser.name);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
