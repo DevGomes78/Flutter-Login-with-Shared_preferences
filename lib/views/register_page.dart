@@ -4,7 +4,7 @@ import 'package:flutter_logar_listar/components/container_widget.dart';
 import 'package:flutter_logar_listar/components/text_formWidget.dart';
 import 'package:flutter_logar_listar/components/text_widget.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
-import 'package:flutter_logar_listar/service/save_user_controller.dart';
+import 'package:flutter_logar_listar/service/save_service_controller.dart';
 import 'package:flutter_logar_listar/utils/validar_campos.dart';
 import 'package:flutter_logar_listar/views/login_page.dart';
 import '../constants/error_constants.dart';
