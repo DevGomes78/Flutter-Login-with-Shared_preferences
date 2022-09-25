@@ -17,10 +17,12 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _sobreNomeController = TextEditingController();
 
   final TextEditingController _emailController = TextEditingController();
 
   final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _repitaSenhaController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -67,9 +69,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 150),
                 _campoNome(),
                 const SizedBox(height: 10),
+                _campoSobreNome(),
+                const SizedBox(height: 10),
                 _campoEmail(),
                 const SizedBox(height: 10),
-                _campoLogin(),
+                _campoSenha(),
+                const SizedBox(height: 10),
+                _campoRepitaSenha(),
                 _textEsqueceuSenha(),
                 const SizedBox(height: 50),
                 _btnCadastrarLogin(),
@@ -146,8 +152,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
-
-  _campoLogin() {
+  _campoSobreNome() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -158,30 +163,19 @@ class _RegisterPageState extends State<RegisterPage> {
           color: Colors.grey[200],
         ),
         child: TextFormWidget(
-          StringConstants.login,
-          StringConstants.digiteLogin,
+          StringConstants.sobreNome,
+          StringConstants.digiteSobreNome,
           const Icon(
-            Icons.vpn_key,
+            Icons.person_add,
             color: Colors.deepPurple,
           ),
-          sulfixIcon: GestureDetector(
-            onTap: () {
-              setState(() {
-                _obscureText = !_obscureText;
-              });
-            },
-            child: Icon(
-              _obscureText ? Icons.visibility : Icons.visibility_off,
-            ),
-          ),
-          controller: _senhaController,
-          obscureText: _obscureText,
-          validator: Validate().validateSenha,
+          controller: _sobreNomeController,
+          obscureText: false,
+          validator: Validate().validateSobreNome,
         ),
       ),
     );
   }
-
   _campoEmail() {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -206,6 +200,76 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+
+  _campoSenha() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          color: Colors.grey[200],
+        ),
+        child: TextFormWidget(
+          StringConstants.senha,
+          StringConstants.digiteSenha,
+          const Icon(
+            Icons.vpn_key,
+            color: Colors.deepPurple,
+          ),
+          sulfixIcon: GestureDetector(
+            onTap: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+            child: Icon(
+              _obscureText ? Icons.visibility : Icons.visibility_off,
+            ),
+          ),
+          controller: _senhaController,
+          obscureText: _obscureText,
+          validator: Validate().validateSenha,
+        ),
+      ),
+    );
+  }
+  _campoRepitaSenha() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          color: Colors.grey[200],
+        ),
+        child: TextFormWidget(
+          StringConstants.senha,
+          StringConstants.repitaSenha,
+          const Icon(
+            Icons.vpn_key,
+            color: Colors.deepPurple,
+          ),
+          sulfixIcon: GestureDetector(
+            onTap: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+            child: Icon(
+              _obscureText ? Icons.visibility : Icons.visibility_off,
+            ),
+          ),
+          controller: _repitaSenhaController,
+          obscureText: _obscureText,
+          validator: Validate().validateSenha,
+        ),
+      ),
+    );
+  }
+
 
   void _register() {
     if (_formKey.currentState!.validate()) {
