@@ -174,7 +174,6 @@ class _LoginPageState extends State<LoginPage> {
                       name: savedUser.name,
                       email: savedUser.mail,
                     )));
-        print(savedUser.name);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(

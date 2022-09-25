@@ -7,7 +7,6 @@ import 'package:flutter_logar_listar/constants/string_constants_login.dart';
 import 'package:flutter_logar_listar/service/save_service.dart';
 import 'package:flutter_logar_listar/utils/validar_campos.dart';
 import 'package:flutter_logar_listar/views/login_page.dart';
-import '../constants/error_constants.dart';
 import '../models/user_service_models.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -66,7 +65,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               children: [
                 ContainerWidget(text: StringConstants.cadastrar),
-                const SizedBox(height: 150),
+                const SizedBox(height: 100),
                 _campoNome(),
                 const SizedBox(height: 10),
                 _campoSobreNome(),
@@ -105,7 +104,15 @@ class _RegisterPageState extends State<RegisterPage> {
   _btnCadastrarLogin() {
     return InkWell(
       onTap: () {
-        _register();
+        if(_senhaController.text ==_repitaSenhaController.text){
+          _register();
+        }else{
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('senhas nao conferem'),
+            ),
+          );
+        }
       },
       child: ButtonWidget(
         text: StringConstants.cadastrar,
@@ -121,7 +128,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: const Text(
           StringConstants.esqueceuSenha,
           style:
-              TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),
+          TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),
         ),
         onTap: () {},
       ),
@@ -152,6 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+
   _campoSobreNome() {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -176,6 +184,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+
   _campoEmail() {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -235,6 +244,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+
   _campoRepitaSenha() {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -259,12 +269,13 @@ class _RegisterPageState extends State<RegisterPage> {
               });
             },
             child: Icon(
-              _obscureText ? Icons.visibility : Icons.visibility_off,
+              _obscureText ? Icons.visibility :
+              Icons.visibility_off,
             ),
           ),
           controller: _repitaSenhaController,
           obscureText: _obscureText,
-          validator: Validate().validateSenha,
+          validator: Validate().validateRepitaSenha,
         ),
       ),
     );
@@ -275,8 +286,10 @@ class _RegisterPageState extends State<RegisterPage> {
     if (_formKey.currentState!.validate()) {
       UserModel newUser = UserModel(
         name: _nomeController.text,
+        sobrenome: _sobreNomeController.text,
         mail: _emailController.text,
         senha: _senhaController.text,
+        repitasenha: _repitaSenhaController.text,
       );
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -285,14 +298,10 @@ class _RegisterPageState extends State<RegisterPage> {
       );
       SaveUser().saveUser(newUser);
       _nomeController.clear();
+      _sobreNomeController.clear();
       _emailController.clear();
       _senhaController.clear();
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(ErrorConstants.errorRegister),
-        ),
-      );
+      _repitaSenhaController.clear();
     }
   }
 }
