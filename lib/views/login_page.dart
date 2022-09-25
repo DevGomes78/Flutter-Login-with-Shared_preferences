@@ -4,12 +4,12 @@ import 'package:flutter_logar_listar/components/container_widget.dart';
 import 'package:flutter_logar_listar/components/text_formWidget.dart';
 import 'package:flutter_logar_listar/components/text_widget.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
-import 'package:flutter_logar_listar/models/user_models.dart';
+import 'package:flutter_logar_listar/models/user_service_models.dart';
 import 'package:flutter_logar_listar/utils/validar_campos.dart';
 import 'package:flutter_logar_listar/views/register_page.dart';
 import 'package:flutter_logar_listar/views/user_page.dart';
 import '../constants/error_constants.dart';
-import '../controlers/login_user_controller.dart';
+import '../service/login_user_controller.dart';
 
 class LoginPage extends StatefulWidget {
   @override
