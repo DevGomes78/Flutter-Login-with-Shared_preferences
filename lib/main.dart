@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_logar_listar/views/splash.dart';
+import 'package:flutter_logar_listar/views/splash_page.dart';
 
 void main() =>  runApp(const MyApp());
 
