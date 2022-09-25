@@ -59,43 +59,27 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _textCadastrarLogin(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => RegisterPage()));
-      },
-      child: Textwidget(
-        cadastro: StringConstants.cadastrar,
-        login: StringConstants.naoTemCadastro,
+  _AreaEmail() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
       ),
-    );
-  }
-
-  _btnLogin() {
-    return InkWell(
-      onTap: () {
-        _doLogin();
-      },
-      child: ButtonWidget(
-        text: StringConstants.login,
-      ),
-    );
-  }
-
-  Container _textEsqueceuSenha() {
-    return Container(
-      margin: const EdgeInsets.only(top: 10, right: 20),
-      alignment: Alignment.centerRight,
-      child: InkWell(
-        child: const Text(
-          StringConstants.esqueceuSenha,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          color: Colors.grey[200],
+        ),
+        child: TextFormWidget(
+          StringConstants.email,
+          StringConstants.digiteEmail,
+          const Icon(
+            Icons.email,
             color: Colors.deepPurple,
           ),
+          controller: emailController,
+          obscureText: false,
+          validator: Validate().validateEmail,
         ),
-        onTap: () {},
       ),
     );
   }
@@ -135,27 +119,43 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _AreaEmail() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15,
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          color: Colors.grey[200],
-        ),
-        child: TextFormWidget(
-          StringConstants.email,
-          StringConstants.digiteEmail,
-          const Icon(
-            Icons.email,
+  _textEsqueceuSenha() {
+    return Container(
+      margin: const EdgeInsets.only(top: 10, right: 20),
+      alignment: Alignment.centerRight,
+      child: InkWell(
+        child: const Text(
+          StringConstants.esqueceuSenha,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
             color: Colors.deepPurple,
           ),
-          controller: emailController,
-          obscureText: false,
-          validator: Validate().validateEmail,
         ),
+        onTap: () {},
+      ),
+    );
+  }
+
+  _btnLogin() {
+    return InkWell(
+      onTap: () {
+        _doLogin();
+      },
+      child: ButtonWidget(
+        text: StringConstants.login,
+      ),
+    );
+  }
+
+  _textCadastrarLogin(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => RegisterPage()));
+      },
+      child: Textwidget(
+        cadastro: StringConstants.cadastrar,
+        login: StringConstants.naoTemCadastro,
       ),
     );
   }

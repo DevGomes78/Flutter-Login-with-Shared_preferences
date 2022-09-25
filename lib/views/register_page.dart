@@ -241,7 +241,7 @@ class _RegisterPageState extends State<RegisterPage> {
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('senhas nao conferem'),
+              content: Text(StringConstants.senhanaoconfere),
             ),
           );
         }
