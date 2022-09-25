@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_logar_listar/components/shmmer_widget.dart';
+import 'package:flutter_logar_listar/components/shimmer_widget.dart';
 
 class Skeleton extends StatelessWidget {
   const Skeleton({Key? key}) : super(key: key);
