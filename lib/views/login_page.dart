@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 ContainerWidget(text: StringConstants.login),
-                const SizedBox(height: 200),
+                const SizedBox(height: 150),
                 _AreaEmail(),
                 const SizedBox(height: 10),
                 _AreaLogin(),

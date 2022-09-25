@@ -16,7 +16,7 @@ class StringConstants {
 
   static const esqueceuSenha = 'Esqueceu a Senha?';
   static const naoTemCadastro = 'Nao tem Cadastro ? ';
-  static const cadastrar = 'Cadastro';
+  static const cadastrar = 'Cadastrar';
 
   static const buscarUsuario = 'Buscar usuario';
   static const jaecadastrado = 'Ja é Cadastrado?';
