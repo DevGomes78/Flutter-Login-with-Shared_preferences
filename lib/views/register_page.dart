@@ -88,53 +88,6 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  _textFazerLogin(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
-      },
-      child: Textwidget(
-        cadastro: StringConstants.fazerLogin,
-        login: StringConstants.jaecadastrado,
-      ),
-    );
-  }
-
-  _btnCadastrarLogin() {
-    return InkWell(
-      onTap: () {
-        if(_senhaController.text ==_repitaSenhaController.text){
-          _register();
-        }else{
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('senhas nao conferem'),
-            ),
-          );
-        }
-      },
-      child: ButtonWidget(
-        text: StringConstants.cadastrar,
-      ),
-    );
-  }
-
-  _textEsqueceuSenha() {
-    return Container(
-      margin: const EdgeInsets.only(top: 10, right: 20),
-      alignment: Alignment.centerRight,
-      child: InkWell(
-        child: const Text(
-          StringConstants.esqueceuSenha,
-          style:
-          TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),
-        ),
-        onTap: () {},
-      ),
-    );
-  }
-
   _campoNome() {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -269,8 +222,7 @@ class _RegisterPageState extends State<RegisterPage> {
               });
             },
             child: Icon(
-              _obscureText ? Icons.visibility :
-              Icons.visibility_off,
+              _obscureText ? Icons.visibility : Icons.visibility_off,
             ),
           ),
           controller: _repitaSenhaController,
@@ -281,6 +233,39 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  _btnCadastrarLogin() {
+    return InkWell(
+      onTap: () {
+        if (_senhaController.text == _repitaSenhaController.text) {
+          _register();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('senhas nao conferem'),
+            ),
+          );
+        }
+      },
+      child: ButtonWidget(
+        text: StringConstants.cadastrar,
+      ),
+    );
+  }
+
+  _textEsqueceuSenha() {
+    return Container(
+      margin: const EdgeInsets.only(top: 10, right: 20),
+      alignment: Alignment.centerRight,
+      child: InkWell(
+        child: const Text(
+          StringConstants.esqueceuSenha,
+          style:
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),
+        ),
+        onTap: () {},
+      ),
+    );
+  }
 
   void _register() {
     if (_formKey.currentState!.validate()) {
@@ -303,5 +288,18 @@ class _RegisterPageState extends State<RegisterPage> {
       _senhaController.clear();
       _repitaSenhaController.clear();
     }
+  }
+
+  _textFazerLogin(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginPage()));
+      },
+      child: Textwidget(
+        cadastro: StringConstants.fazerLogin,
+        login: StringConstants.jaecadastrado,
+      ),
+    );
   }
 }
