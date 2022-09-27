@@ -9,7 +9,7 @@ import 'package:flutter_logar_listar/utils/validate_fields.dart';
 import 'package:flutter_logar_listar/views/register_page.dart';
 import 'package:flutter_logar_listar/views/user_page.dart';
 import '../constants/error_constants.dart';
-import '../service/login_service.dart';
+import '../service/login_user_service.dart';
 
 class LoginPage extends StatefulWidget {
   @override
