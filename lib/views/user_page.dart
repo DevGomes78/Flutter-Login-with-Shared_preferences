@@ -33,7 +33,7 @@ class _UserPageState extends State<UserPage> {
     await Future.delayed(
       const Duration(seconds: 2),
     );
-    UserController().GetUser(query: '').then((map) {
+    UserController().GetUser(query: 'query').then((map) {
       setState(() {
         lista = map;
       });
