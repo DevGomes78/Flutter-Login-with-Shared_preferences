@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/string_constants_login.dart';
 import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,11 +11,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => const HomePage(),
         ),
       );
     });
@@ -43,12 +44,20 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'images/git.png',color: Colors.white,
-                height: 250,
+                'images/git.png',
+                color: Colors.white,
+                height: 220,
+              ),
+              const SizedBox(height: 150),
+              const Text(
+                StringConstants.aguarde,
+                style: TextStyle(color: Colors.white),
               ),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20,vertical: 16),
-                child: LinearProgressIndicator(),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                ),
               ),
             ],
           ),

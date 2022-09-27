@@ -5,10 +5,10 @@ import 'package:flutter_logar_listar/models/user_api_models.dart';
 import 'package:http/http.dart' as http;
 
 
-
+List<UserApiModel> lista = [];
 class UserController {
-  List<UserApiModel> lista = [];
-  Future<List<UserApiModel>> SearchApiUser({required String query}) async {
+
+  Future<List<UserApiModel>> searchApiUser({required String query}) async {
     try {
       var url = Uri.parse(ServiceApiUrl.baseUrl);
       var response = await http.get(url);
@@ -31,7 +31,7 @@ class UserController {
     return [];
   }
 
-  Future<List<UserApiModel>> GetUser() async {
+  Future<List<UserApiModel>> getUser() async {
     try {
       var url = Uri.parse(ServiceApiUrl.baseUrl);
       var response = await http.get(url);

@@ -28,4 +28,5 @@ class StringConstants {
   static const sair = 'Sair';
   static const minhaConta = 'Minha Conta';
   static const  configuracoes = 'Configuraçoes';
+  static const  aguarde = 'Aguarde';
 }

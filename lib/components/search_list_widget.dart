@@ -30,8 +30,8 @@ class SearchUser extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return FutureBuilder<List<UserApiModel>?>(
-        future: UserController().SearchApiUser(query: query),
+    return FutureBuilder<List<UserApiModel>>(
+        future: UserController().searchApiUser(query: query),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(
@@ -55,7 +55,7 @@ class SearchUser extends SearchDelegate {
                       subtitle: Text(
                         snapshot.data![index].htmlUrl.toString(),
                       ),
-                      onTap: GitHubReposiatory(userApiModel: UserController().lista[index]).callGithub,
+                      onTap: GitHubReposiatory(userApiModel: lista[index]).callGithub,
                     ),
                   );
                 });

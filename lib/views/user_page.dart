@@ -33,7 +33,7 @@ class _UserPageState extends State<UserPage> {
     await Future.delayed(
       const Duration(seconds: 2),
     );
-    UserController().GetUser().then((map) {
+    UserController().getUser().then((map) {
       setState(() {
         lista = map;
       });
@@ -59,7 +59,7 @@ class _UserPageState extends State<UserPage> {
           email: widget.email.toString(),
         ),
         body: RefreshIndicator(
-          onRefresh: UserController().GetUser,
+          onRefresh: UserController().getUser,
           child: ListView.builder(
               itemCount: isLoading ? 10 : lista.length,
               itemBuilder: (context, index) {
@@ -77,7 +77,7 @@ class _UserPageState extends State<UserPage> {
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.deepPurple,
-      title: const Text('User List'),
+      title: const Text('Github Users'),
       centerTitle: true,
       actions: [
         IconButton(
