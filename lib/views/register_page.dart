@@ -5,7 +5,7 @@ import 'package:flutter_logar_listar/components/text_formWidget.dart';
 import 'package:flutter_logar_listar/components/text_widget.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
 import 'package:flutter_logar_listar/service/save_service.dart';
-import 'package:flutter_logar_listar/utils/validar_campos.dart';
+import 'package:flutter_logar_listar/utils/validate_fields.dart';
 import 'package:flutter_logar_listar/views/login_page.dart';
 import '../models/user_service_models.dart';
 
@@ -15,13 +15,13 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController _nomeController = TextEditingController();
-  final TextEditingController _sobreNomeController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
 
   final TextEditingController _emailController = TextEditingController();
 
-  final TextEditingController _senhaController = TextEditingController();
-  final TextEditingController _repitaSenhaController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _repeatPasswordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -66,20 +66,20 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 ContainerWidget(text: StringConstants.cadastrar),
                 const SizedBox(height: 100),
-                _campoNome(),
+                _nameField(),
                 const SizedBox(height: 10),
-                _campoSobreNome(),
+                _lastnameField(),
                 const SizedBox(height: 10),
-                _campoEmail(),
+                _emailField(),
                 const SizedBox(height: 10),
-                _campoSenha(),
+                _passwordField(),
                 const SizedBox(height: 10),
-                _campoRepitaSenha(),
-                _textEsqueceuSenha(),
+                _passwordRepeatField(),
+                _textForgotPassword(),
                 const SizedBox(height: 50),
-                _btnCadastrarLogin(),
+                _btnRegisterLogin(),
                 const SizedBox(height: 10),
-                _textFazerLogin(context),
+                _textLogin(context),
               ],
             ),
           ),
@@ -88,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  _campoNome() {
+  _nameField() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -105,15 +105,15 @@ class _RegisterPageState extends State<RegisterPage> {
             Icons.person_add,
             color: Colors.deepPurple,
           ),
-          controller: _nomeController,
+          controller: _nameController,
           obscureText: false,
-          validator: Validate().validateNome,
+          validator: Validate().validateName,
         ),
       ),
     );
   }
 
-  _campoSobreNome() {
+  _lastnameField() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -130,15 +130,15 @@ class _RegisterPageState extends State<RegisterPage> {
             Icons.person_add,
             color: Colors.deepPurple,
           ),
-          controller: _sobreNomeController,
+          controller: _lastNameController,
           obscureText: false,
-          validator: Validate().validateSobreNome,
+          validator: Validate().validateLastName,
         ),
       ),
     );
   }
 
-  _campoEmail() {
+  _emailField() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -163,7 +163,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  _campoSenha() {
+  _passwordField() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -190,15 +190,15 @@ class _RegisterPageState extends State<RegisterPage> {
               _obscureText ? Icons.visibility : Icons.visibility_off,
             ),
           ),
-          controller: _senhaController,
+          controller: _passwordController,
           obscureText: _obscureText,
-          validator: Validate().validateSenha,
+          validator: Validate().validatePassword,
         ),
       ),
     );
   }
 
-  _campoRepitaSenha() {
+  _passwordRepeatField() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -225,18 +225,18 @@ class _RegisterPageState extends State<RegisterPage> {
               _obscureText ? Icons.visibility : Icons.visibility_off,
             ),
           ),
-          controller: _repitaSenhaController,
+          controller: _repeatPasswordController,
           obscureText: _obscureText,
-          validator: Validate().validateRepitaSenha,
+          validator: Validate().validateRepeatPassword,
         ),
       ),
     );
   }
 
-  _btnCadastrarLogin() {
+  _btnRegisterLogin() {
     return InkWell(
       onTap: () {
-        if (_senhaController.text == _repitaSenhaController.text) {
+        if (_passwordController.text == _repeatPasswordController.text) {
           _register();
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -252,7 +252,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  _textEsqueceuSenha() {
+  _textForgotPassword() {
     return Container(
       margin: const EdgeInsets.only(top: 10, right: 20),
       alignment: Alignment.centerRight,
@@ -270,11 +270,11 @@ class _RegisterPageState extends State<RegisterPage> {
   void _register() {
     if (_formKey.currentState!.validate()) {
       UserModel newUser = UserModel(
-        name: _nomeController.text,
-        sobrenome: _sobreNomeController.text,
+        name: _nameController.text,
+        sobrenome: _lastNameController.text,
         mail: _emailController.text,
-        senha: _senhaController.text,
-        repitasenha: _repitaSenhaController.text,
+        senha: _passwordController.text,
+        repitasenha: _repeatPasswordController.text,
       );
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -282,15 +282,15 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       );
       SaveUser().saveUser(newUser);
-      _nomeController.clear();
-      _sobreNomeController.clear();
+      _nameController.clear();
+      _lastNameController.clear();
       _emailController.clear();
-      _senhaController.clear();
-      _repitaSenhaController.clear();
+      _passwordController.clear();
+      _repeatPasswordController.clear();
     }
   }
 
-  _textFazerLogin(BuildContext context) {
+  _textLogin(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.push(

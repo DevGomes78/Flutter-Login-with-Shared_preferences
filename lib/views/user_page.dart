@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/utils/call_github_repository.dart';
-import 'package:flutter_logar_listar/controlers/search_controller.dart';
+import 'package:flutter_logar_listar/components/search_controller.dart';
 import 'package:flutter_logar_listar/controlers/user_controller.dart';
 import 'package:flutter_logar_listar/models/user_api_models.dart';
 import 'package:flutter_logar_listar/views/shimmer_page.dart';
@@ -11,7 +11,7 @@ class UserPage extends StatefulWidget {
   String? name;
   String? email;
 
-  UserPage({this.name, this.email});
+  UserPage({Key? key, this.name, this.email}) : super(key: key);
 
   @override
   State<UserPage> createState() => _UserPageState();

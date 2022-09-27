@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 List<UserApiModel> lista = [];
 
 class UserController {
-  Future<List<UserApiModel>?> GetUser({String? query}) async {
+  Future<List<UserApiModel>> GetUser({String? query}) async {
     try {
       var url = Uri.parse(ServiceApiUrl.baseUrl);
       var response = await http.get(url);
