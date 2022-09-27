@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
-import 'package:flutter_logar_listar/service/user_api_controller.dart';
+import 'package:flutter_logar_listar/service/user_api_service.dart';
 import 'package:flutter_logar_listar/models/user_api_models.dart';
 
 import '../controlers/call_github_repository.dart';
