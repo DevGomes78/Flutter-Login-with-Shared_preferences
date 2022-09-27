@@ -8,7 +8,7 @@ class Skeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('user'),
+        title: const Text('user'),
         centerTitle: true,
       ),
       body: ListView.builder(

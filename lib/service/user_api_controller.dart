@@ -7,20 +7,36 @@ import 'package:http/http.dart' as http;
 List<UserApiModel> lista = [];
 
 class UserController {
-  Future<List<UserApiModel>> GetUser({String? query}) async {
+  Future<List<UserApiModel>> SearchApiUser({required String query}) async {
     try {
       var url = Uri.parse(ServiceApiUrl.baseUrl);
       var response = await http.get(url);
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         result.forEach((item) => lista.add(UserApiModel.fromJson(item)));
-        if (query!.length > 1) {
+        if (query.length > 1) {
           lista = lista
               .where((item) => item.name!.toLowerCase().contains(
                     query.toLowerCase(),
                   ))
               .toList();
         }
+        return lista;
+      }
+    } catch (e) {
+      print('${ErrorConstants.ApiErrorLogin}  $e');
+      return [];
+    }
+    return [];
+  }
+
+  Future<List<UserApiModel>> GetUser() async {
+    try {
+      var url = Uri.parse(ServiceApiUrl.baseUrl);
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        result.forEach((item) => lista.add(UserApiModel.fromJson(item)));
         return lista;
       }
     } catch (e) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/controlers/call_github_repository.dart';
 import 'package:flutter_logar_listar/components/search_controller.dart';
-import 'package:flutter_logar_listar/controlers/user_api_controller.dart';
+import 'package:flutter_logar_listar/service/user_api_controller.dart';
 import 'package:flutter_logar_listar/models/user_api_models.dart';
 import 'package:flutter_logar_listar/views/shimmer_page.dart';
 import '../components/drawer_widget.dart';
@@ -33,7 +33,7 @@ class _UserPageState extends State<UserPage> {
     await Future.delayed(
       const Duration(seconds: 2),
     );
-    UserController().GetUser(query: 'query').then((map) {
+    UserController().GetUser().then((map) {
       setState(() {
         lista = map;
       });

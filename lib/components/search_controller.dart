@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
-import 'package:flutter_logar_listar/controlers/user_api_controller.dart';
+import 'package:flutter_logar_listar/service/user_api_controller.dart';
 import 'package:flutter_logar_listar/models/user_api_models.dart';
 
 import '../controlers/call_github_repository.dart';
@@ -31,7 +31,7 @@ class SearchUser extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     return FutureBuilder<List<UserApiModel>?>(
-        future: UserController().GetUser(query: query),
+        future: UserController().SearchApiUser(query: query),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(

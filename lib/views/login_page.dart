@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 ContainerWidget(text: StringConstants.login),
-                const SizedBox(height: 150),
+                const SizedBox(height: 100),
                 _mailField(),
                 const SizedBox(height: 10),
                 _LoginField(),
@@ -51,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                 _btnLogin(),
                 const SizedBox(height: 10),
                 _textRegisterLogin(context),
+                const SizedBox(height: 10),
               ],
             ),
           ),
@@ -163,10 +164,10 @@ class _LoginPageState extends State<LoginPage> {
   _doLogin() async {
     if (_formKey.currentState!.validate()) {
       String mailForm = mailController.text;
-      String senhaForm = passwordController.text;
+      String passwordForm = passwordController.text;
       UserModel savedUser = await LoginUser().getsavedUser();
 
-      if (mailForm == savedUser.mail && senhaForm == savedUser.senha) {
+      if (mailForm == savedUser.mail && passwordForm == savedUser.senha) {
         Navigator.push(
             context,
             MaterialPageRoute(
