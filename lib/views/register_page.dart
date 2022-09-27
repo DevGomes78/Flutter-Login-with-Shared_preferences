@@ -65,7 +65,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               children: [
                 ContainerWidget(text: StringConstants.cadastrar),
-                const SizedBox(height: 100),
+                const SizedBox(height: 50),
                 _nameField(),
                 const SizedBox(height: 10),
                 _lastnameField(),
@@ -76,10 +76,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 10),
                 _passwordRepeatField(),
                 _textForgotPassword(),
-                const SizedBox(height: 50),
+                const SizedBox(height: 20),
                 _btnRegisterLogin(),
                 const SizedBox(height: 10),
                 _textLogin(context),
+                const SizedBox(height: 10),
               ],
             ),
           ),
