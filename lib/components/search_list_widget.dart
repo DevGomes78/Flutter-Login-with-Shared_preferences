@@ -55,7 +55,7 @@ class SearchUser extends SearchDelegate {
                       subtitle: Text(
                         snapshot.data![index].htmlUrl.toString(),
                       ),
-                      onTap: GitHubReposiatory(userApiModel: lista[index]).callGithub,
+                      onTap: GitHubReposiatory(userApiModel: UserController().lista[index]).callGithub,
                     ),
                   );
                 });
