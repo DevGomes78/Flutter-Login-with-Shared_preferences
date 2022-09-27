@@ -43,14 +43,14 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 ContainerWidget(text: StringConstants.login),
                 const SizedBox(height: 150),
-                _AreaEmail(),
+                _mailField(),
                 const SizedBox(height: 10),
-                _AreaLogin(),
-                _textEsqueceuSenha(),
+                _LoginField(),
+                _textForgotPassword(),
                 const SizedBox(height: 50),
                 _btnLogin(),
                 const SizedBox(height: 10),
-                _textCadastrarLogin(context),
+                _textRegisterLogin(context),
               ],
             ),
           ),
@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _AreaEmail() {
+  _mailField() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _AreaLogin() {
+  _LoginField() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _textEsqueceuSenha() {
+  _textForgotPassword() {
     return Container(
       margin: const EdgeInsets.only(top: 10, right: 20),
       alignment: Alignment.centerRight,
@@ -147,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _textCadastrarLogin(BuildContext context) {
+  _textRegisterLogin(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.push(
