@@ -5,7 +5,7 @@ import 'package:flutter_logar_listar/models/user_api_models.dart';
 
 import '../utils/call_github_repository.dart';
 
-class BuscaUsuario extends SearchDelegate {
+class SearchUser extends SearchDelegate {
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [

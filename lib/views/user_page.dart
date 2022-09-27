@@ -4,7 +4,6 @@ import 'package:flutter_logar_listar/components/search_controller.dart';
 import 'package:flutter_logar_listar/controlers/user_api_controller.dart';
 import 'package:flutter_logar_listar/models/user_api_models.dart';
 import 'package:flutter_logar_listar/views/shimmer_page.dart';
-
 import '../components/drawer_widget.dart';
 
 class UserPage extends StatefulWidget {
@@ -83,7 +82,7 @@ class _UserPageState extends State<UserPage> {
       actions: [
         IconButton(
           onPressed: () {
-            showSearch(context: context, delegate: BuscaUsuario());
+            showSearch(context: context, delegate: SearchUser());
           },
           icon: const Icon(Icons.search),
         ),
