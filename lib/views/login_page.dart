@@ -17,9 +17,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController emailController = TextEditingController();
+  TextEditingController mailController = TextEditingController();
 
-  TextEditingController senhaController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
             Icons.email,
             color: Colors.deepPurple,
           ),
-          controller: emailController,
+          controller: mailController,
           obscureText: false,
           validator: Validate().validateEmail,
         ),
@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
               _obscureText ? Icons.visibility : Icons.visibility_off,
             ),
           ),
-          controller: senhaController,
+          controller:passwordController,
           obscureText: _obscureText,
           validator: Validate().validatePassword,
         ),
@@ -162,8 +162,8 @@ class _LoginPageState extends State<LoginPage> {
 
   _doLogin() async {
     if (_formKey.currentState!.validate()) {
-      String mailForm = emailController.text;
-      String senhaForm = senhaController.text;
+      String mailForm = mailController.text;
+      String senhaForm = passwordController.text;
       UserModel savedUser = await LoginUser().getsavedUser();
 
       if (mailForm == savedUser.mail && senhaForm == savedUser.senha) {
