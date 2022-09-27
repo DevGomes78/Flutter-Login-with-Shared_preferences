@@ -3,7 +3,7 @@ class Validate {
 
   String? validateName(String? value) {
     if (value!.isEmpty) {
-      return 'Campo em Branco';
+      return 'Campo nome em Branco';
    // } else if (!RegExp(r'^[a-z-A-Z]+$').hasMatch(value)) {
      // return 'Somente Letras';
     } else if (value.trim().length < 4) {
@@ -15,7 +15,7 @@ class Validate {
 
   String? validateLastName(String? value) {
     if (value!.isEmpty) {
-      return 'Campo em Branco';
+      return 'Campo sobrenome em Branco';
    // } else if (!RegExp(r'^[a-z-A-Z]+$').hasMatch(value)) {
      // return 'Somente Letras';
     } else if (value.trim().length < 3) {
@@ -27,7 +27,7 @@ class Validate {
 
   String? validatePhone(String? value) {
     if (value!.isEmpty) {
-      return 'Campo em Branco';
+      return 'Campo telefone em Branco';
     } else if (value.trim().length < 11) {
       return 'Informe Número com DDD';
     } else {
@@ -37,7 +37,7 @@ class Validate {
 
   String? validateEmail(String? value) {
     if (value!.isEmpty) {
-      return 'Campo em Branco';
+      return 'Campo email em Branco';
     } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}').hasMatch(value)) {
       return 'email Invalido';
     } else {
