@@ -5,7 +5,7 @@ import 'package:flutter_logar_listar/components/text_formWidget.dart';
 import 'package:flutter_logar_listar/components/text_widget.dart';
 import 'package:flutter_logar_listar/constants/string_constants_login.dart';
 import 'package:flutter_logar_listar/models/user_service_models.dart';
-import 'package:flutter_logar_listar/utils/validate_fields.dart';
+import 'package:flutter_logar_listar/controlers/validate_fields.dart';
 import 'package:flutter_logar_listar/views/register_page.dart';
 import 'package:flutter_logar_listar/views/user_page.dart';
 import '../constants/error_constants.dart';
