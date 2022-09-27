@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
               _obscureText ? Icons.visibility : Icons.visibility_off,
             ),
           ),
-          controller:passwordController,
+          controller: passwordController,
           obscureText: _obscureText,
           validator: Validate().validatePassword,
         ),
