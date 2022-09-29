@@ -17,4 +17,6 @@
 + url_laucher:   redirecionar para pagina web,
 + shimmer:  para criar efeito de carregamento dos dados
 
-![loginApi](https://user-images.githubusercontent.com/98062365/167458556-b1851af8-d8b7-47df-82d9-b41ad359e5f3.gif)
+
+![flutter login shared_preferences](https://user-images.githubusercontent.com/98062365/192608106-e941169f-4f57-479b-b090-12c7c2a119a7.gif)
+![flutter login shared_preferences2](https://user-images.githubusercontent.com/98062365/192608117-b40d2ed4-40d7-480f-8655-4cc776d92b30.gif)
