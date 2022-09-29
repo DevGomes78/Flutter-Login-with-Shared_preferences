@@ -74,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 10),
                 _passwordField(),
                 const SizedBox(height: 10),
-                _passwordRepeatField(),
+                _confirmPasswordField(),
                 _textForgotPassword(),
                 const SizedBox(height: 20),
                 _btnRegisterLogin(),
@@ -199,7 +199,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  _passwordRepeatField() {
+  _confirmPasswordField() {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
@@ -210,7 +210,7 @@ class _RegisterPageState extends State<RegisterPage> {
           color: Colors.grey[200],
         ),
         child: TextFormWidget(
-          StringConstants.senha,
+          StringConstants.repitaSenha,
           StringConstants.repitaSenha,
           const Icon(
             Icons.vpn_key,

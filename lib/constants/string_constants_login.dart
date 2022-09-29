@@ -10,7 +10,7 @@ class StringConstants {
   static const login = ' Login';
   static const senha = ' Senha';
   static const digiteSenha = 'Digite a Senha';
-  static const repitaSenha = 'Repita a Senha';
+  static const repitaSenha = 'Confirme a Senha';
   static const senhanaoconfere = 'Senhas nao Conferem!';
 
 
