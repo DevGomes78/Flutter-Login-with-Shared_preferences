@@ -41,7 +41,7 @@ class DrawerWidget extends StatelessWidget {
           ),
           const Divider(color: Colors.grey),
           const ListTile(
-            leading: Icon(Icons.add),
+            leading: Icon(Icons.settings),
             title: Text(StringConstants.configuracoes),
           ),
           const Divider(color: Colors.grey),
