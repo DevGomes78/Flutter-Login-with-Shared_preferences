@@ -8,7 +8,7 @@ class ContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 180,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(00),
@@ -25,7 +25,7 @@ class ContainerWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              margin: const EdgeInsets.only(right: 20, top: 80),
+              margin: const EdgeInsets.only(right: 20, top: 100),
               alignment: Alignment.bottomRight,
               child: Text(
                 text!,

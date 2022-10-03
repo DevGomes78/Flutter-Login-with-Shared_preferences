@@ -101,7 +101,7 @@ class _UserPageState extends State<UserPage> {
         ),
         title: Text(lista[index].name.toString()),
         subtitle: Text(lista[index].htmlUrl.toString()),
-        onTap: GitHubReposiatory(userApiModel: lista[index]).callGithub,
+        onTap: GitHubRepository(userApiModel: lista[index]).callGithub,
       ),
     );
   }
