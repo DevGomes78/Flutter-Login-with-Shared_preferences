@@ -3,6 +3,8 @@ import '../constants/string_constants_login.dart';
 import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -48,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: Colors.white,
                 height: 220,
               ),
-              const SizedBox(height: 150),
+              const SizedBox(height: 190),
               const Text(
                 StringConstants.aguarde,
                 style: TextStyle(color: Colors.white),

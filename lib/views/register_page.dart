@@ -40,7 +40,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: const Text(StringConstants.cancelar),
               ),
               OutlinedButton(
-                onPressed: () => Navigator.pop(context, true),
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context)=> LoginPage())),
                 child: const Text(StringConstants.sair),
               ),
             ],

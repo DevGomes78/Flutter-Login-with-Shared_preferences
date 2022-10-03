@@ -12,6 +12,8 @@ import '../constants/error_constants.dart';
 import '../service/login_user_service.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -26,12 +28,34 @@ class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
   bool saved = false;
 
+  Future<bool?> showConfirmationDialog() {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text(StringConstants.desejaSair),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: const Text(StringConstants.cancelar),
+              ),
+              OutlinedButton(
+                onPressed: () =>
+                    Navigator.pop(context,true),
+                child: const Text(StringConstants.sair),
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
         if (!saved) {
-          return false;
+          final confirmation = await showConfirmationDialog();
+          return confirmation ?? false;
         }
         return true;
       },

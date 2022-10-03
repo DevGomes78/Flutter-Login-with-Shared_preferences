@@ -11,7 +11,7 @@ class ContainerWidget extends StatelessWidget {
       height: 150,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(90),
+          topRight: Radius.circular(00),
           bottomLeft: Radius.circular(90),
         ),
         gradient: LinearGradient(
@@ -25,7 +25,7 @@ class ContainerWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              margin: const EdgeInsets.only(right: 20, top: 20),
+              margin: const EdgeInsets.only(right: 20, top: 80),
               alignment: Alignment.bottomRight,
               child: Text(
                 text!,
