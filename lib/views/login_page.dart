@@ -189,9 +189,18 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       String mailForm = mailController.text;
       String passwordForm = passwordController.text;
-      UserModel savedUser = await LoginUser().getsavedUser();
 
-      if (mailForm == savedUser.mail && passwordForm == savedUser.senha) {
+      UserModel? savedUser = await LoginUser().getsavedUser(context);
+
+      if(savedUser!.mail==null  && savedUser.senha==null){
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('user nao cadastrado'),
+          ),
+        );
+      }
+
+      else if (mailForm == savedUser.mail && passwordForm == savedUser.senha) {
         Navigator.push(
             context,
             MaterialPageRoute(

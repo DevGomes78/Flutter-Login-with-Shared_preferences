@@ -11,7 +11,7 @@ class ContainerWidget extends StatelessWidget {
       height: 180,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(00),
+          bottomRight: Radius.circular(00),
           bottomLeft: Radius.circular(90),
         ),
         gradient: LinearGradient(
