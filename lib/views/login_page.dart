@@ -28,56 +28,28 @@ class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
   bool saved = false;
 
-  Future<bool?> showConfirmationDialog() {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text(StringConstants.desejaSair),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context, false),
-                child: const Text(StringConstants.cancelar),
-              ),
-              OutlinedButton(
-                onPressed: () =>
-                    Navigator.pop(context,true),
-                child: const Text(StringConstants.sair),
-              ),
-            ],
-          );
-        });
-  }
+
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        if (!saved) {
-          final confirmation = await showConfirmationDialog();
-          return confirmation ?? false;
-        }
-        return true;
-      },
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                ContainerWidget(text: StringConstants.login),
-                const SizedBox(height: 200),
-                _mailField(),
-                const SizedBox(height: 10),
-                _LoginField(),
-                _textForgotPassword(),
-                const SizedBox(height: 50),
-                _btnLogin(),
-                const SizedBox(height: 10),
-                _textRegisterLogin(context),
-                const SizedBox(height: 10),
-              ],
-            ),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              ContainerWidget(text: StringConstants.login),
+              const SizedBox(height: 200),
+              _mailField(),
+              const SizedBox(height: 10),
+              _LoginField(),
+              _textForgotPassword(),
+              const SizedBox(height: 50),
+              _btnLogin(),
+              const SizedBox(height: 10),
+              _textRegisterLogin(context),
+              const SizedBox(height: 10),
+            ],
           ),
         ),
       ),
