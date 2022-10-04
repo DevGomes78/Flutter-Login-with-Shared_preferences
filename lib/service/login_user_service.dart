@@ -12,30 +12,29 @@ class LoginUser {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('user nao cadastrado'),
+            title: const Text('Usuario nao cadastrado'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context)=>RegisterPage())),
+                    MaterialPageRoute(builder: (context) => RegisterPage())),
                 child: const Text('Cadastrar login'),
               ),
             ],
           );
         });
   }
+
   Future<UserModel?> getsavedUser(context) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? jsonUser = prefs.getString(StringConstants.loguinUserInfos);
       if (jsonUser == null) {
-
         showConfirmationDialog(context);
       }
       Map<String, dynamic> mapUser = json.decode(jsonUser.toString());
       UserModel userModel = UserModel.fromJson(mapUser);
       return userModel;
-    }
-    catch (e) {
+    } catch (e) {
       print('${ErrorConstants.userNotRegister}$e');
     }
     return null;

@@ -283,7 +283,7 @@ class _RegisterPageState extends State<RegisterPage> {
           content: Text(StringConstants.loginRegistrado),
         ),
       );
-      SaveUser().saveUser(newUser);
+      SaveUser().saveUser(newUser,context);
       _nameController.clear();
       _lastNameController.clear();
       _emailController.clear();
