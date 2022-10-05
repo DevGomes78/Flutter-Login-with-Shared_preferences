@@ -18,5 +18,6 @@
 + shimmer:  para criar efeito de carregamento dos dados
 
 
-![flutter login shared_preferences](https://user-images.githubusercontent.com/98062365/192608106-e941169f-4f57-479b-b090-12c7c2a119a7.gif)
-![flutter login shared_preferences2](https://user-images.githubusercontent.com/98062365/192608117-b40d2ed4-40d7-480f-8655-4cc776d92b30.gif)
+
+![flutter_login_shared](https://user-images.githubusercontent.com/98062365/194150643-544e3176-791f-493e-9d94-ed433743e1af.gif)
+![flutter_login_shared2](https://user-images.githubusercontent.com/98062365/194150652-93aa5dbb-33a2-40a4-b061-82e4ffe3610f.gif)
